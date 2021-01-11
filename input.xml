@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Mobiles>
+
+  <Mobile>
+    <Model>G975F</Model>
+    <OS>Android</OS>
+    <Origin>USA</Origin>
+    <Material>Plastic</Material>
+    <Samsung>
+      <Wlan>802.11</Wlan>
+      <CardSlot>MicroSD</CardSlot>
+      <RadioAvailability>true</RadioAvailability>
+      <BluetoothAvailability>true</BluetoothAvailability>
+    </Samsung>
+  </Mobile>
+  <Mobile>
+    <Model>G986</Model>
+    <OS>Android</OS>
+    <Origin>USA-Israel</Origin>
+    <Material>Silicon-Plastic</Material>
+    <Samsung>
+      <Wlan>802.11</Wlan>
+      <CardSlot>MicroSD</CardSlot>
+      <RadioAvailability>true</RadioAvailability>
+      <BluetoothAvailability>false</BluetoothAvailability>
+    </Samsung>
+  </Mobile>
+  <Mobile>
+    <Model>G770F</Model>
+    <OS>Android</OS>
+    <Origin>Israel</Origin>
+    <Material>Silicon-Plastic</Material>
+    <Samsung>
+      <Wlan>802.11</Wlan>
+      <CardSlot>MicroSD</CardSlot>
+      <RadioAvailability>true</RadioAvailability>
+      <BluetoothAvailability>false</BluetoothAvailability>
+    </Samsung>
+  </Mobile>
+</Mobiles>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Mobiles>
+    <Mobile>
+        <Model>G889F</Model>
+        <OS>Android</OS>
+        <Origin>USA</Origin>
+        <Material>Metal</Material>
+        <Samsung>
+            <Wlan>802.11</Wlan>
+            <CardSlot>MicroSD</CardSlot>
+            <RadioAvailability>true</RadioAvailability>
+            <BluetoothAvailability>false</BluetoothAvailability>
+        </Samsung>
+    </Mobile>
+    <Mobile>
+        <Model>G715F</Model>
+        <OS>Android</OS>
+        <Origin>USA-Israel</Origin>
+        <Material>Metal-Plastic</Material>
+        <Samsung>
+            <Wlan>802.11</Wlan>
+            <CardSlot>MicroSD</CardSlot>
+            <RadioAvailability>true</RadioAvailability>
+            <BluetoothAvailability>false</BluetoothAvailability>
+        </Samsung>
+    </Mobile>
+    <Mobile>
+        <Model>G781B</Model>
+        <OS>Android</OS>
+        <Origin>USA</Origin>
+        <Material>Metal-Plastic</Material>
+        <Samsung>
+            <Wlan>802.11</Wlan>
+            <CardSlot>MicroSD</CardSlot>
+            <RadioAvailability>true</RadioAvailability>
+            <BluetoothAvailability>true</BluetoothAvailability>
+        </Samsung>
+    </Mobile>
+</Mobiles>
