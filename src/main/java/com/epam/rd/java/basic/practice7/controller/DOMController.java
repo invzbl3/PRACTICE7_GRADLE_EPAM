@@ -328,7 +328,7 @@ public class DOMController {
         
         // to validate xsd schema file
         DOMController domCon = new DOMController(Constants.XSD_FILE);
-        domCon.parse(true);
+        domCon.parse(false);
 
         // try to parse NOT valid XML document with validation on (failed)
         DOMController domContr = new DOMController(Constants.VALID_XML_INPUT_FILE);

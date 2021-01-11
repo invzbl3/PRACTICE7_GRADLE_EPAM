@@ -183,14 +183,14 @@ public class SAXController extends DefaultHandler {
         
         // to validate xsd schema file
         SAXController saxCon = new SAXController(Constants.XSD_FILE);
-        saxCon.parse(true);
+        saxCon.parse(false);
 
 
         // try to parse valid XML file (success)
         SAXController saxContr = new SAXController(Constants.VALID_XML_INPUT_FILE);
 
         // do parse with validation on (success)
-        saxContr.parse(true);
+        saxContr.parse(false);
 
         // obtain container
         Mobiles mobiles = saxContr.getMobiles();
