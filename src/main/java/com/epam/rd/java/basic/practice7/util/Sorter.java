@@ -53,7 +53,7 @@ public class Sorter {
         // Test.xml --> Test object
         DOMController domController = new DOMController(
                 Constants.VALID_XML_INPUT_FILE);
-        domController.parse(false);
+        domController.parse(true);
         Mobiles mobiles = domController.getMobiles();
 
         System.out.println(DELIMITER);

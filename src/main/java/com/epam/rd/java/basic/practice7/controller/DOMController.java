@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 
 public class DOMController {
-    
+
     private static final Logger logger = Logger.getLogger("DOMController.class");
     private static final String MESSAGE = "Something went wrong:";
     public static final String DELIMITER = "====================================";
@@ -52,11 +52,11 @@ public class DOMController {
      */
     public void parse(boolean validate)
             throws ParserConfigurationException, SAXException, IOException {
-                
+
         System.out.println("Invoking parse()");
         // obtain DOM parser
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        
+
         try{
             dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -66,7 +66,7 @@ public class DOMController {
             logger.severe(MESSAGE);
             logger.severe(Arrays.toString(exp.getStackTrace()));
         }
-        
+
         // set properties for Factory
 
         // XML document contains namespaces
@@ -112,7 +112,7 @@ public class DOMController {
             mobiles.getMobileList().add(question);
         }
     }
-    
+
     /**
      * Extracts question object from the question XML node.
      *
@@ -120,9 +120,9 @@ public class DOMController {
      * @return Question object.
      */
     private static Mobile getMobile(Node qNode) {
-        
+
         System.out.println("Invoking getMobile()");
-        
+
         Mobile mobile = new Mobile();
         Element qElement = (Element) qNode;
 
@@ -165,9 +165,9 @@ public class DOMController {
      * @return Samsung object.
      */
     private static Samsung getSamsung(NodeList nodeList) {
-        
+
         System.out.println("Invoking getSamsung()");
-        
+
         Samsung samsung = new Samsung();
         Element samsungElement = (Element) nodeList.item(0);
 
@@ -316,7 +316,7 @@ public class DOMController {
         TransformerFactory tf = TransformerFactory.newInstance();
         // Secure this "Transformer" by either disabling external DTDs or enabling secure processing.
         tf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-        
+
         javax.xml.transform.Transformer t = tf.newTransformer();
         t.setOutputProperty(OutputKeys.INDENT, "yes");
 
@@ -325,10 +325,10 @@ public class DOMController {
     }
 
     public static void main(String[] args) throws Exception {
-        
+
         // to validate xsd schema file
         DOMController domCon = new DOMController(Constants.XSD_FILE);
-        domCon.parse(false);
+        domCon.parse(true);
 
         // try to parse NOT valid XML document with validation on (failed)
         DOMController domContr = new DOMController(Constants.VALID_XML_INPUT_FILE);
@@ -343,7 +343,7 @@ public class DOMController {
         }
 
         // try to parse NOT valid XML document with validation off (success)
-        domContr.parse(false);
+        domContr.parse(true);
 
         // we have Mobiles object at this point:
         System.out.println(DELIMITER);

@@ -23,7 +23,7 @@ public class SAXController extends DefaultHandler {
     private static final Logger logger = Logger.getLogger("SAXController.class");
     private static final String MESSAGE = "Something went wrong:";
     public static final String DELIMITER = "====================================";
-    
+
     private final String xmlFileName;
 
     // current element name holder
@@ -52,7 +52,7 @@ public class SAXController extends DefaultHandler {
         System.out.println("Invoking parse()");
         // obtain sax parser factory
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        
+
         try{
             factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
             factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -62,7 +62,7 @@ public class SAXController extends DefaultHandler {
             logger.severe(MESSAGE);
             logger.severe(Arrays.toString(exp.getStackTrace()));
         }
-        
+
         // XML document contains namespaces
         factory.setNamespaceAware(true);
 
@@ -75,7 +75,7 @@ public class SAXController extends DefaultHandler {
         SAXParser parser = factory.newSAXParser();
         parser.parse(xmlFileName, this);
     }
-    
+
     // ///////////////////////////////////////////////////////////
     // ERROR HANDLER IMPLEMENTATION
     // ///////////////////////////////////////////////////////////
@@ -180,17 +180,17 @@ public class SAXController extends DefaultHandler {
     }
 
     public static void main(String[] args) throws Exception {
-        
+
         // to validate xsd schema file
         SAXController saxCon = new SAXController(Constants.XSD_FILE);
-        saxCon.parse(false);
+        saxCon.parse(true);
 
 
         // try to parse valid XML file (success)
         SAXController saxContr = new SAXController(Constants.VALID_XML_INPUT_FILE);
 
         // do parse with validation on (success)
-        saxContr.parse(false);
+        saxContr.parse(true);
 
         // obtain container
         Mobiles mobiles = saxContr.getMobiles();
@@ -199,7 +199,7 @@ public class SAXController extends DefaultHandler {
         System.out.println(DELIMITER);
         System.out.print("Here is the mobiles: \n" + mobiles);
         System.out.println(DELIMITER);
-        
+
         // now try to parse NOT valid XML (failed)
         saxContr = new SAXController(Constants.INVALID_XML_FILE);
         try {
@@ -214,7 +214,7 @@ public class SAXController extends DefaultHandler {
         }
 
         // and now try to parse NOT valid XML with validation off (success)
-        saxContr.parse(false);
+        saxContr.parse(true);
 
         // we have Mobiles object at this point:
         System.out.println(DELIMITER);

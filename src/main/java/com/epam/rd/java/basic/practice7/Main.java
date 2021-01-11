@@ -12,7 +12,7 @@ public final class Main {
     public static final String ARROW = " ==> ";
     public static final String OUTPUT = "Output";
     public static final String INPUT = "Input";
-    
+
     public static void usage() {
         System.out.println("java com.epam.rd.java.basic.practice7.Main xmlFileName");
     }
@@ -32,7 +32,7 @@ public final class Main {
 
         // get
         DOMController domController = new DOMController(xmlFileName);
-        domController.parse(false);
+        domController.parse(true);
         Mobiles mobiles = domController.getMobiles();
 
         // sort (case 1)
@@ -49,7 +49,7 @@ public final class Main {
 
         // get
         SAXController saxController = new SAXController(xmlFileName);
-        saxController.parse(false);
+        saxController.parse(true);
         mobiles = saxController.getMobiles();
 
         // sort  (case 2)
@@ -70,7 +70,7 @@ public final class Main {
         STAXController staxController = new STAXController(xmlFileName);
         staxController.parse();
         mobiles = staxController.getMobiles();
-        
+
         // sort  (case 3)
         Sorter.sortMobilesByMaterial(mobiles);
 
