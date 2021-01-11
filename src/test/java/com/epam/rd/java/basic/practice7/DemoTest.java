@@ -42,6 +42,15 @@ public class DemoTest {
         }
     }
 
+    /*    @Test
+    public void checkIfNamesConstructorExists() {
+        Assert.assertNotEquals(new Names(), null);
+    }
+    @Test
+    public void checkIfConstantsConstructorExists() {
+        Assert.assertNotEquals(new Constants(), null);
+    }*/
+
     @After
     public void clean() throws IOException {
         Path pathDom = Paths.get(Constants.VALID_XML_OUTPUT_DOM_FILE);
