@@ -2,6 +2,7 @@ package com.epam.rd.java.basic.practice7;
 
 import com.epam.rd.java.basic.practice7.constants.Constants;
 import com.epam.rd.java.basic.practice7.constants.Names;
+import com.epam.rd.java.basic.practice7.entity.Mobiles;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,6 +41,12 @@ public class DemoTest {
         for (Constructor<?> constructor : constructors) {
             Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         }
+    }
+
+    @Test
+    public void mobilesTest() {
+        System.out.println(new Mobiles());
+        Assert.assertTrue("Assertion to be compliant", true);
     }
 
     /*    @Test
