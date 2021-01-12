@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -28,19 +29,27 @@ public class DemoTest {
     }
 
     @Test()
-    public void checkIfNamesPrivateConstructorExists() {
-        final Constructor<?>[] constructors = Names.class.getDeclaredConstructors();
+    public void checkIfNamesPrivateConstructorExists() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        /*final Constructor<?>[] constructors = Names.class.getDeclaredConstructors();
         for (Constructor<?> constructor : constructors) {
             Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        }
+        }*/
+        Constructor<Names> constructor = Names.class.getDeclaredConstructor();
+        Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 
     @Test()
-    public void checkIfConstantsConstructorExists() {
-        final Constructor<?>[] constructors = Constants.class.getDeclaredConstructors();
+    public void checkIfConstantsConstructorExists() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        /*final Constructor<?>[] constructors = Constants.class.getDeclaredConstructors();
         for (Constructor<?> constructor : constructors) {
             Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        }
+        }*/
+        Constructor<Constants> constructor = Constants.class.getDeclaredConstructor();
+        Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        constructor.newInstance();
     }
 
     @Test
