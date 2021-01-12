@@ -331,7 +331,7 @@ public class DOMController {
         domCon.parse(true);
 
         // try to parse NOT valid XML document with validation on (failed)
-        DOMController domContr = new DOMController(Constants.VALID_XML_INPUT_FILE);
+        DOMController domContr = new DOMController(Constants.INVALID_XML_FILE);
         try {
             // parse with validation (failed)
             domContr.parse(true);
