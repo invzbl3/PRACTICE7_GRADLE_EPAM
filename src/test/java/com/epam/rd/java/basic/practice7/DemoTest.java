@@ -30,10 +30,6 @@ public class DemoTest {
 
     @Test()
     public void checkIfNamesPrivateConstructorExists() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        /*final Constructor<?>[] constructors = Names.class.getDeclaredConstructors();
-        for (Constructor<?> constructor : constructors) {
-            Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        }*/
         Constructor<Names> constructor = Names.class.getDeclaredConstructor();
         Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -42,10 +38,6 @@ public class DemoTest {
 
     @Test()
     public void checkIfConstantsConstructorExists() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        /*final Constructor<?>[] constructors = Constants.class.getDeclaredConstructors();
-        for (Constructor<?> constructor : constructors) {
-            Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        }*/
         Constructor<Constants> constructor = Constants.class.getDeclaredConstructor();
         Assert.assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -57,15 +49,6 @@ public class DemoTest {
         System.out.println(new Mobiles());
         Assert.assertTrue("Assertion to be compliant", true);
     }
-
-    /*    @Test
-    public void checkIfNamesConstructorExists() {
-        Assert.assertNotEquals(new Names(), null);
-    }
-    @Test
-    public void checkIfConstantsConstructorExists() {
-        Assert.assertNotEquals(new Constants(), null);
-    }*/
 
     @After
     public void clean() throws IOException {

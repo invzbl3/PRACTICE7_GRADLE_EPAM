@@ -11,17 +11,11 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Logger;
 
 
 public class SAXController extends DefaultHandler {
 
-    private static final Logger logger = Logger.getLogger("SAXController.class");
-    private static final String MESSAGE = "Something went wrong:";
     public static final String DELIMITER = "====================================";
 
     private final String xmlFileName;
@@ -50,18 +44,12 @@ public class SAXController extends DefaultHandler {
     public void parse(boolean validate)
             throws ParserConfigurationException, SAXException, IOException {
         System.out.println("Invoking parse()");
+
         // obtain sax parser factory
         SAXParserFactory factory = SAXParserFactory.newInstance();
-
-        try{
-            factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-
-        } catch(ParserConfigurationException | SAXNotRecognizedException | SAXNotSupportedException exp){
-            logger.severe(MESSAGE);
-            logger.severe(Arrays.toString(exp.getStackTrace()));
-        }
+        factory.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
 
         // XML document contains namespaces
         factory.setNamespaceAware(true);
@@ -74,16 +62,6 @@ public class SAXController extends DefaultHandler {
 
         SAXParser parser = factory.newSAXParser();
         parser.parse(xmlFileName, this);
-    }
-
-    // ///////////////////////////////////////////////////////////
-    // ERROR HANDLER IMPLEMENTATION
-    // ///////////////////////////////////////////////////////////
-
-    @Override
-    public void error(org.xml.sax.SAXParseException e) throws SAXException {
-        // if XML document not valid just throw exception
-        throw e;
     }
 
     public Mobiles getMobiles() {
@@ -181,11 +159,6 @@ public class SAXController extends DefaultHandler {
 
     public static void main(String[] args) throws Exception {
 
-        // to validate xsd schema file
-        SAXController saxCon = new SAXController(Constants.XSD_FILE);
-        saxCon.parse(true);
-
-
         // try to parse valid XML file (success)
         SAXController saxContr = new SAXController(Constants.VALID_XML_INPUT_FILE);
 
@@ -202,16 +175,8 @@ public class SAXController extends DefaultHandler {
 
         // now try to parse NOT valid XML (failed)
         saxContr = new SAXController(Constants.INVALID_XML_FILE);
-        try {
-            // do parse with validation on (failed)
-            saxContr.parse(true);
-        } catch (Exception ex) {
-            System.err.println(DELIMITER);
-            System.err.println("Validation is failed:\n" + ex.getMessage());
-            System.err
-                    .println("Try to print mobiles object:" + saxContr.getMobiles());
-            System.err.println(DELIMITER);
-        }
+        // do parse with validation on (failed)
+        saxContr.parse(true);
 
         // and now try to parse NOT valid XML with validation off (success)
         saxContr.parse(true);

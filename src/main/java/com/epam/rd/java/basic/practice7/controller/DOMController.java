@@ -10,8 +10,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,14 +20,10 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 
 public class DOMController {
 
-    private static final Logger logger = Logger.getLogger("DOMController.class");
-    private static final String MESSAGE = "Something went wrong:";
     public static final String DELIMITER = "====================================";
 
     private final String xmlFileName;
@@ -54,18 +48,12 @@ public class DOMController {
             throws ParserConfigurationException, SAXException, IOException {
 
         System.out.println("Invoking parse()");
+
         // obtain DOM parser
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
-        try{
-            dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
-            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
-
-        } catch(ParserConfigurationException exp){
-            logger.severe(MESSAGE);
-            logger.severe(Arrays.toString(exp.getStackTrace()));
-        }
+        dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        dbf.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+        dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 
         // set properties for Factory
 
@@ -82,15 +70,6 @@ public class DOMController {
         }
 
         DocumentBuilder db = dbf.newDocumentBuilder();
-
-        // set error handler
-        db.setErrorHandler(new DefaultHandler() {
-            @Override
-            public void error(SAXParseException e) throws SAXException {
-                // throw exception if XML document is NOT valid
-                throw e;
-            }
-        });
 
         // parse XML document
         Document document = db.parse(xmlFileName);
@@ -326,21 +305,10 @@ public class DOMController {
 
     public static void main(String[] args) throws Exception {
 
-        // to validate xsd schema file
-        DOMController domCon = new DOMController(Constants.XSD_FILE);
-        domCon.parse(true);
-
         // try to parse NOT valid XML document with validation on (failed)
         DOMController domContr = new DOMController(Constants.INVALID_XML_FILE);
-        try {
-            // parse with validation (failed)
-            domContr.parse(true);
-        } catch (SAXException ex) {
-            System.err.println(DELIMITER);
-            System.err.println("XML not valid");
-            System.err.println("Mobiles object --> " + domContr.getMobiles());
-            System.err.println(DELIMITER);
-        }
+        // parse with validation (failed)
+        domContr.parse(true);
 
         // try to parse NOT valid XML document with validation off (success)
         domContr.parse(true);
