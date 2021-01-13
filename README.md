@@ -11,4 +11,5 @@ For this you need:
 	a) jacocoTestReport.xml provides code coverage information
 	b) checkStyleReport.xml fingBugsReport.xml and pmdReport.xml provide information about static analysis
 
-![Результаты 7-й главы](https://user-images.githubusercontent.com/24904825/104147334-85ede800-53d6-11eb-9fdc-951edb6d58f5.PNG)
+![Результаты 7-й главы](https://user-images.githubusercontent.com/24904825/104400977-f6724180-555b-11eb-8b05-b9edfee520cd.PNG)
+
